@@ -1,0 +1,319 @@
+/* =============================== RESET + BASE ================================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* =============================== VARIÁVEIS DE TEMA ================================ */
+:root {
+    --bg: #f6fbf9;
+    --card: #ffffff;
+    --text: #20332b;
+    --muted: #5b6b63;
+    --accent: #2fa77a;
+    --accent-2: #91d6b6;
+    --glass: rgba(47, 167, 122, 0.08);
+    --radius: 14px;
+    --shadow: 0 8px 24px rgba(34, 50, 40, 0.06);
+}
+
+/* Tema escuro */
+[data-theme="dark"] {
+    --bg: #071412;
+    --card: #0b1f18;
+    --text: #dbeee4;
+    --muted: #9bb9ad;
+    --accent: #3dff9e;
+    --accent-2: #1f7f5f;
+    --glass: rgba(61, 255, 158, 0.06);
+    --shadow: 0 10px 30px rgba(2, 8, 6, 0.6);
+}
+
+body {
+    font-family: Inter, "Segoe UI", Roboto, Arial;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding-top: 100px;
+}
+
+/* =============================== HEADER ================================ */
+.site-header {
+    background: var(--bg);
+    padding: 12px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.header-inner {
+    background: var(--card);
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-mini {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logo-text {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--accent);
+}
+
+/* Navegação */
+.nav {
+    display: flex;
+    gap: 10px;
+}
+
+.nav a {
+    padding: 8px 12px;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--text);
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.nav a:hover {
+    background: var(--glass);
+}
+
+.nav a.active {
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    color: white;
+    box-shadow: 0 6px 18px rgba(47, 167, 122, 0.14);
+}
+
+/* =============================== BOTÕES ================================ */
+.controls {
+    display: flex;
+    gap: 8px;
+}
+
+.btn,
+.btn-ghost {
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+}
+
+.btn-ghost {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: var(--text);
+}
+
+/* =============================== CONTAINER ================================ */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* =============================== CARDS ================================ */
+.card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-top: 20px;
+}
+
+/* =============================== PORTFÓLIO ================================ */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+/* Projeto clicável */
+.project {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--card);
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+    text-decoration: none;
+    color: inherit;
+}
+
+.project:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(32, 51, 43, 0.12);
+}
+
+.project img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* Overlay ao passar o mouse */
+.project::after {
+    content: "Ver Dashboard";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.3s;
+    font-size: 1.1rem;
+}
+
+.project:hover::after {
+    opacity: 1;
+}
+
+/* Texto do projeto */
+.project .meta {
+    padding: 14px;
+}
+
+.project h3 {
+    margin-bottom: 6px;
+}
+
+.project p {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+/* =============================== POWER BI EMBED ================================ */
+.powerbi-embed {
+    width: 100%;
+    height: 80vh;
+    margin: 24px 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.powerbi-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* =============================== FORMULÁRIOS ================================ */
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dfe7e3;
+    border-radius: 10px;
+    margin-top: 6px;
+}
+
+/* =============================== RODAPÉ ================================ */
+.site-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: var(--muted);
+}
+
+/* =============================== RESPONSIVO ================================ */
+@media (max-width: 800px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    body {
+        padding-top: 140px;
+    }
+
+    .powerbi-embed {
+        height: 70vh;
+    }
+
+  
+    /* =============================== ESTILO DO TÍTULO E DESCRIÇÃO ================================ */
+    .project-header {
+        text-align: center;
+        background: var(--glass);
+        padding: 40px 20px;
+        border-radius: var(--radius);
+        margin-bottom: 30px;
+    }
+
+    .project-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--accent);
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        color: var(--muted);
+        margin-top: 10px;
+    }
+
+    .description {
+        margin-top: 20px;
+        font-size: 1.1rem;
+        color: var(--text);
+    }
+
+    /* =============================== LINK DO POWER BI ================================ */
+    .powerbi-embed {
+        width: 100%;
+        height: 80vh;
+        margin: 20px 0;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+    }
+
+    .powerbi-embed iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .card {
+        padding: 20px;
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-top: 20px;
+    }
+
+    /* >>>>>>>>>>>>>>> AQUI ESTÁ A ÚNICA ADIÇÃO <<<<<<<<<<<<<< */
+body.formacao .project::after {
+    content: "Ver Certificado";
+}
+}
