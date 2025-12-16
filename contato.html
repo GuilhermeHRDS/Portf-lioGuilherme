@@ -46,8 +46,11 @@
             <h2>Contato</h2>
 
             <!-- Texto explicativo do formulário -->
-            <p>Use o formulário abaixo para simular o envio de mensagem. (Front-end apenas)</p>
+            <p> Interessado em discutir projetos, explorar oportunidades ou compartilhar ideias sobre dados, Power BI e
+                automação? Será um prazer conversar! Envie uma mensagem e responderei o quanto antes..</p>
 
+            <br>
+            
             <!-- Formulário de contato; não envia dados reais -->
             <form id="contact-form" novalidate>
 
@@ -61,10 +64,21 @@
 
                 <!-- Campo mensagem -->
                 <label for="message">Mensagem</label>
-                <textarea id="message" name="message" rows="6" placeholder="Escreva sua mensagem..." required></textarea>
-
+                <textarea id="message" name="message" rows="6" placeholder="Escreva sua mensagem..."
+                    required></textarea>
+                <br>
+                <br>
                 <!-- Botão de envio -->
                 <button class="btn" type="submit">Enviar mensagem</button>
+
+
+
+                <!-- NOVO botão WhatsApp (única adição) -->
+                <button type="button" class="btn" onclick="window.open('https://wa.me/5519971192499', '_blank')">
+                    WhatsApp
+                </button>
+
+
             </form>
         </section>
 
@@ -74,6 +88,15 @@
     <footer class="site-footer">
         <p>© 2025 Guilherme Henrique — Portfólio</p>
     </footer>
+
+    <!-- EMAILJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("DEFTRI5_YmgPlh1Em");
+        })();
+    </script>
+
 
     <!-- Script principal (tema + mensagem de confirmação do formulário) -->
     <script src="script.js"></script>

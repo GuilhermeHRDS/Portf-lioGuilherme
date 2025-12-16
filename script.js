@@ -1,60 +1,60 @@
-// Função imediata para controlar o tema claro/escuro
+// ==================== TEMA ====================
 (function () {
-    const themeToggle = document.getElementById("theme-toggle"); // botão de alternância
-    const root = document.documentElement; // elemento <html>
-    const saved = localStorage.getItem("theme") || "light"; // tema salvo no navegador
+    const btn = document.getElementById("theme-toggle");
+    const root = document.documentElement;
+    const saved = localStorage.getItem("theme");
 
-    // Aplica o tema escuro caso esteja salvo
     if (saved === "dark") root.setAttribute("data-theme", "dark");
 
-    // Se o botão existir, adiciona evento de clique
-    if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-
-            // Se já estiver no tema escuro, volta para o claro
+    if (btn) {
+        btn.addEventListener("click", () => {
             if (root.getAttribute("data-theme") === "dark") {
                 root.removeAttribute("data-theme");
-                localStorage.setItem("theme", "light"); // salva preferência
-            }
-            // Caso contrário, ativa o tema escuro
-            else {
+                localStorage.setItem("theme", "light");
+            } else {
                 root.setAttribute("data-theme", "dark");
-                localStorage.setItem("theme", "dark"); // salva preferência
+                localStorage.setItem("theme", "dark");
             }
         });
     }
 })();
 
-// Executa quando o conteúdo da página é carregado
+// ==================== EMAIL + VALIDAÇÃO ====================
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("contact-form");
 
-    if (form) {
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-            // Campos do formulário
-            const nameField = document.getElementById("name");
-            const emailField = document.getElementById("email");
-            const messageField = document.getElementById("message");
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
 
-            // Validação: campos vazios
-            if (!nameField.value.trim() || !emailField.value.trim() || !messageField.value.trim()) {
-                alert("Por favor, preencha todos os campos antes de enviar.");
-                return;
-            }
+        // 🔴 Validação obrigatória
+        if (!name || !email || !message) {
+            alert("Preencha todos os campos antes de enviar.");
+            return;
+        }
 
-            // Validação: e-mail válido
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailField.value)) {
-                alert("Por favor, informe um e-mail válido.");
-                return;
-            }
+        // 🔴 Validação simples de e-mail
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Informe um e-mail válido.");
+            return;
+        }
 
-            // Se passou por todas as validações:
-            alert("Mensagem enviada com sucesso! Obrigado pelo contato.");
-
+        // ✅ Envio do e-mail
+        emailjs.sendForm(
+            "service_jj4y9ot",
+            "template_k2jf53u",
+            form
+        )
+        .then(() => {
+            alert("Mensagem enviada com sucesso!");
             form.reset();
+        })
+        .catch(() => {
+            alert("Erro ao enviar a mensagem. Tente novamente.");
         });
-    }
+    });
 });
